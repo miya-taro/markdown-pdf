@@ -11,7 +11,6 @@ body,
   line-height: 1.65;
   color: #1f2328;
   word-wrap: break-word;
-  counter-reset: doc-figure doc-table;
 }
 
 /* タイトル */
@@ -85,7 +84,7 @@ blockquote.alert-warning strong {
   color: #cf222e;
 }
 
-/* 挿絵・スクリーンショット（doc-figure 外の単独画像用） */
+/* 挿絵・スクリーンショット */
 img {
   display: block;
   max-width: 100%;
@@ -95,45 +94,8 @@ img {
   border-radius: 4px;
 }
 
-/* 図ブロック（番号は CSS で自動採番） */
-.doc-figure,
-figure.doc-figure {
-  counter-increment: doc-figure;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin: 1em 0 1.4em;
-  page-break-inside: avoid;
-}
-
-.doc-figure-body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-}
-
-.doc-figure .doc-figure-body img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  margin: 0 auto;
-  border: 1px solid #d0d7de;
-  border-radius: 4px;
-}
-
-.doc-figure .mermaid,
-.doc-figure div.mermaid,
-.doc-figure pre code.language-mermaid {
-  display: block;
-  margin: 0 auto;
-  text-align: center;
-  max-width: 100%;
-}
-
-.doc-figure-caption,
-.doc-figure figcaption {
+/* 図タイトル（図の下に配置） */
+p.fig-caption {
   width: 100%;
   margin: 0.5em 0 0;
   padding: 0;
@@ -143,32 +105,13 @@ figure.doc-figure {
   line-height: 1.4;
 }
 
-.doc-figure-caption::before,
-.doc-figure figcaption::before {
-  content: "図" counter(doc-figure) " ";
-  font-weight: 700;
-  color: #24292f;
-}
-
-/* 図のサイズ */
-.doc-figure.img-width-sm .doc-figure-body img { width: 40%; }
-.doc-figure.img-width-md .doc-figure-body img { width: 60%; }
-.doc-figure.img-width-70 .doc-figure-body img { width: 70%; }
-.doc-figure.img-width-lg .doc-figure-body img { width: 80%; }
-.doc-figure.img-width-full .doc-figure-body img { width: 100%; }
-
-/* 表キャプション（番号は CSS で自動採番） */
+/* 表キャプション */
 p.table-caption {
-  counter-increment: doc-table;
   margin: 1.2em 0 0.4em;
   font-size: 10pt;
   font-weight: 700;
   color: #24292f;
   text-align: left;
-}
-
-p.table-caption::before {
-  content: "表" counter(doc-table) " ";
 }
 
 p.table-caption + table {
@@ -295,8 +238,7 @@ hr {
   blockquote,
   .mermaid,
   img,
-  figure,
-  .doc-figure {
+  figure {
     page-break-inside: avoid !important;
     break-inside: avoid !important;
   }
